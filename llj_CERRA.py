@@ -327,7 +327,6 @@ for yr in range(yr1,yr1+1):
             lev_out = ncfile.createVariable('level', np.int32, ('lev'))
             # Assign units attributes to coordinate variable data.
             time_out.units = 'seconds since 1970-01-01 00:00:00 +00:00'
-            #time_out.calendar = 'proleptic_gregorian'
             lat_out.units = 'degrees_north'
             lon_out.units = 'degrees_east'
             lev_out.units = 'no_units'
@@ -359,7 +358,6 @@ for yr in range(yr1,yr1+1):
             g2_out.missing_value = -32767
             # write data to variables along record (unlimited) dimension.
             for i in range(nt):
-                #g_out[i,:,:,:] = np.short(np.floor((ws[i,:,:,:]-ofst)/scf))
                 g_out[i,:,:,:] = ws[i,:,:,:]
                 g1_out[i,:,:,:] = wdir[i,:,:,:]
                 g2_out[i,:,:,:] = height[i,:,:,:]
@@ -375,7 +373,6 @@ for yr in range(yr1,yr1+1):
             # open a new netCDF file for writing.
             mn='{:0>2}'.format(mon)
             ds='{:0>2}'.format(day)
-            #FileNameOut = 'tmp_nonpacked1_'+str(mon).zfill(2)+str(day).zfill(2)+'.nc'
             fnout = patho+'LLJ_'+str(yr)+'_'+str(mon).zfill(2)+'_'+str(day).zfill(2)+'.nc'
             print(fnout)
             ncfile = Dataset(fnout, 'w')
