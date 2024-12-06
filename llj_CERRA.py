@@ -172,7 +172,7 @@ def rounddown(x):
 args=sys.argv
 yr1=int(args[1])
 
-path="./CERRA/"
+path="./"
 patho="LLJ_CERRA/"
 
 # Thresholds
@@ -272,7 +272,6 @@ for yr in range(yr1,yr1+1):
             for t in range(nt):
                 height[t,:,:,:]=get_height_from_ml_cerra(a_coeff,b_coeff,sfp[t,:,:],temp[t,:,:,:],qs[t,:,:,:])
             del sfp,temp,qs
-            print(np.shape(height),np.min(height),np.max(height))
             f1 = xr.open_dataset(path+'tmp_'+str(yr)+str(mon).zfill(2)+str(day).zfill(2)+'.nc',mask_and_scale=True,decode_times=False)
             lon = f1['longitude'].values
             lat = f1['latitude'].values
@@ -295,7 +294,6 @@ for yr in range(yr1,yr1+1):
             ws=ws[:,0:-2,:,:]
             wdir=wdir[:,::-1,y_l:y_u+1,x_l:x_u+1]
             wdir=wdir[:,0:-2,:,:]
-            print(np.shape(wdir))
             direction_field=np.zeros((8,ny,nx))-32767.0
             speed_field=np.zeros((8,ny,nx))-32767.0
             height_field=np.zeros((8,ny,nx))-32767.0
